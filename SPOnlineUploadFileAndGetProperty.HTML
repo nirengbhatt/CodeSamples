@@ -136,42 +136,7 @@ $.ajax({
 
   }
 
-  // Get the list item that corresponds to the file by calling the file's ListItemAllFields property.
-  function getListItem(fileListItemUri) {
-    // Send the request and return the response.
-    return jQuery.ajax({
-      url: fileListItemUri,
-      type: "GET",
-      headers: { "accept": "application/json;odata=verbose" }
-    });
-  }
-
-  // Change the display name and title of the list item.
-  function updateListItem(itemMetadata) {
-    // Define the list item changes. Use the FileLeafRef property to change the display name.
-    // For simplicity, also use the name as the title.
-    // The example gets the list item type from the item's metadata, but you can also get it from the
-    // ListItemEntityTypeFullName property of the list.
-    var body = String.format("{{'__metadata':{{'type':'{0}'}},'FileLeafRef':'{1}','Title':'{2}'}}",
-        itemMetadata.type, newName, newName);
-
-    // Send the request and return the promise.
-    // This call does not return response content from the server.
-    return jQuery.ajax({
-        url: itemMetadata.uri,
-        type: "POST",
-        data: body,
-        headers: {
-          "X-RequestDigest": jQuery("#__REQUESTDIGEST").val(),
-          "content-type": "application/json;odata=verbose",
-          "content-length": body.length,
-          "IF-MATCH": itemMetadata.etag,
-          "X-HTTP-Method": "MERGE"
-        }
-    });
-  }
-}
-
+ 
 // Display error messages.
 function onError(error) {
   alert(error.responseText);
