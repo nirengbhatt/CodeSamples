@@ -31,15 +31,7 @@ function uploadFile() {
     // Add the file to the SharePoint folder.
     var addFile = addFileToFolder(arrayBuffer);
     addFile.done(function (file, status, xhr) {
-      // Get the list item that corresponds to the uploaded file.
-      var getItem = getListItem(file.d.ListItemAllFields.__deferred.uri);
-      getItem.done(function (listItem, status, xhr) {
-        // Change the display name and title of the list item.
-        var changeItem = updateListItem(listItem.d.__metadata);
-        changeItem.done(function (data, status, xhr) {
-          alert('file uploaded and updated');
-        });
-        changeItem.fail(onError);
+    
       });
       getItem.fail(onError);
     });
