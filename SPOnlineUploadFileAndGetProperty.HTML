@@ -22,7 +22,7 @@ function uploadFile() {
   var newName = jQuery('#displayName').val();
 
   // Get the server URL.
-  var serverUrl = "https://mydomain.sharepoint.com/sites/iContractSPOUAT/";
+  var serverUrl = "https://mydomain.sharepoint.com/sites/mysite/";
 
   // Initiate method calls using jQuery promises.
   // Get the local file as an array buffer.
@@ -68,7 +68,7 @@ function uploadFile() {
     var fileName = parts[parts.length - 1];
 
     // Construct the endpoint.
-    var fileCollectionEndpoint = "https://mydomain.sharepoint.com/sites/iContractSPOUAT/_api/web/lists/getbytitle('DocLibrary')/rootfolder/files/add(url='"+fileName+"', overwrite=true)";
+    var fileCollectionEndpoint = "https://mydomain.sharepoint.com/sites/mysite/_api/web/lists/getbytitle('DocLibrary')/rootfolder/files/add(url='"+fileName+"', overwrite=true)";
 
 $.ajax({
     type: 'POST',
@@ -102,7 +102,7 @@ $.ajax({
           "content-length": arrayBuffer.byteLength	  
         },
 	success: function(d){
-		var ListItemProperties = "https://mydomain.sharepoint.com/sites/iContractSPOUAT/_api/Web/GetFileByServerRelativePath(decodedurl='"+d.d.ServerRelativeUrl+"')/ListItemAllFields";
+		var ListItemProperties = "https://mydomain.sharepoint.com/sites/mysite/_api/Web/GetFileByServerRelativePath(decodedurl='"+d.d.ServerRelativeUrl+"')/ListItemAllFields";
 
 
 
